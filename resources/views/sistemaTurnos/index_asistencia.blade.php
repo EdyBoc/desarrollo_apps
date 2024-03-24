@@ -18,8 +18,8 @@
                 Asignaciones
             </button>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Asignaciones</a>
-                <a class="dropdown-item" href="#">Lista de Solicitud de asignaciones</a>
+                <a class="dropdown-item" href="{{ route('asignaciones') }}">Asignaciones</a>
+                <a class="dropdown-item" href="{{ route('solicitud_asignaciones') }}">Lista de Solicitud de asignaciones</a>
             </div>
         </div>
 
@@ -61,7 +61,7 @@
                 Mis gestiones
             </button>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Solicitud Permisos</a>
+                <a class="dropdown-item" href="{{ route('gestion') }}">Solicitud Permisos</a>
                 <a class="dropdown-item" href="#">Solicitud Horas Extras</a>
             </div>
         </div>

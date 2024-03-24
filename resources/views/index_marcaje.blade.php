@@ -13,7 +13,7 @@
     <!--Iconos  css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
 
-    <title>Document</title>
+    <title>Sistema de Turno</title>
 </head>
 
 <body>
@@ -37,12 +37,10 @@
                         <div class="card-body">
                             <form action=" " method="post">
                                 <div class="form-group">
-                                    <label for="dni">Ingrese su Cui</label>
-                                    <input type="number" class="form-control" id="dni" name="dni"
-                                        placeholder="CUI">
+                                    <label for="lb_codigo">CODIGO</label>
+                                    <input type="number" class="form-control" id="codigo" name="codigo"
+                                        placeholder="Ingrese su codigo AQUI">
                                 </div>
-
-                                <input type="file" id="archivo" name="archivo" accept=".pdf, .doc, .docx"><br><br>
 
                                 <div class="text-center mt-4">
                                     <button type="submit" class="btn btn-primary">ENTRADA</button>

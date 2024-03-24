@@ -1,20 +1,18 @@
 @extends('layout.app')
 
-
-@section('tituloPagina')
-    Fases de Donación
-@stop
-@section('titulo')
-    Sistema de Turnos
-@stop
-@section('subtitulo')
-    Gestiones
-@stop
-@section('styles')
-
+@section('pantalla')
+    @parent
 @endsection
 
-@section('contenedor_pantalla')
+@section('styles')
+    <style>
+
+
+    </style>
+@endsection
+
+@section('content')
+    <h5>Mis gestiones</h5>
 
     <div class="table-responsive">
         <div class="float-right">
@@ -141,17 +139,9 @@
                 </div>
             </div>
         </div>
+@endsection
 
-
-
-    @endsection
-
-
-    @section('scripts')
-        @parent
-        <script src="{{ asset('js/bootstrap.js') }}"></script>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript">
-            //https://ionic.io/ionicons
-        </script>
-    @endsection
+@section('scripts')
+    @parent
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+@endsection

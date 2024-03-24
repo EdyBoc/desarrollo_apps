@@ -11,13 +11,15 @@ use Response;
 use Storage;
 use View;
 
-class RegistroController extends Controller
+class GestionesController extends Controller
 {
 
-        public function index()
+        public function index_gestion()
         {
-            return view('sistemaTurnos/index_menu');
+            return view('sistemaTurnos/gestiones/gestion');
 
         }
+
+       
 
 }
