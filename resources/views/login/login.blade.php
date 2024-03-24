@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,72 +12,57 @@
 
     <!--Iconos  css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
-<style>
-.body {
-  background-color: #f5f5f5;
-}
 
-.h1 {
-  font-weight: bold;
-}
-
-.fecha {
-  margin-top: 10px;
-}
-
-@media (max-width: 768px) {
-  .col-md-6 {
-    width: 100%;
-  }
-}
-
-</style>
-
-    <title>Document</title>
+    <title>Sistema de Turno</title>
 </head>
 
 <body>
 
+    <header class="d-flex justify-content-center align-items-center mb-5">
 
-<div class="d-flex justify-content-center align-items-center">
-        <div class="card w-50">
-            <div class="card-body">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6">
-                        <div class="container">
-    <h1 class="text-center">BIENVENIDOS, REGISTRA TU ENTRADA/SALIDA</h1>
-    <h2 class="text-center" id="fecha"></h2>
-    <div class="row mt-5">
-      <div class="col-md-6 offset-md-3">
-        <form action="">
-          <div class="form-group">
-            <label for="id">Ingrese su CUI</label>
-            <input type="text" class="form-control" id="id" placeholder="Número de identificación">
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <button type="submit" class="btn btn-primary btn-block">Entrada</button>
-            </div>
-            <div class="col-md-6">
-              <button type="submit" class="btn btn-danger btn-block">Salida</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+    </header>
+
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="container">
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-6 col-lg-6">
+                    <div class="card">
+                        <div class="card-header text-center ">
+                            <div class="float-left">
+                                <a href="{{ route('index_menu') }}">Ingresar a Login</a>
+                            </div>
+                            <h4 class="card-title">Bienvenido al Sistema</h4>
+                            <div id="clock" class="text-center display-1"></div>
+                        </div>
+                        <div class="card-body">
+                            <form action=" " method="post">
+                                <div class="form-group">
+                                    <label for="dni">Ingrese su Cui</label>
+                                    <input type="number" class="form-control" id="dni" name="dni"
+                                        placeholder="CUI">
+                                </div>
+
+                                <input type="file" id="archivo" name="archivo" accept=".pdf, .doc, .docx"><br><br>
+
+                                <div class="text-center mt-4">
+                                    <button type="submit" class="btn btn-primary">ENTRADA</button>
+                                    <button type="submit" class="btn btn-danger"></i>SALIDA</button>
+
+
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
 
+    <footer class="d-flex justify-content-center align-items-center">
+        <p>edy@example.com</p>
+    </footer>
 
-  
     <!-- Iconos Scripts-->
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
@@ -92,19 +76,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-<script src="script.js">
-const fechaElement = document.getElementById("fecha");
 
-function updateFecha() {
-  const fechaActual = new Date();
-  const fechaFormateada = fechaActual.toLocaleString();
-  fechaElement.textContent = fechaFormateada;
-}
+<script>
+    function mostrarHora() {
+        var fecha = new Date();
+        var horas = fecha.getHours();
+        var minutos = fecha.getMinutes();
+        var segundos = fecha.getSeconds();
 
-setInterval(updateFecha, 1000);
+        // Formatear a dos dígitos si es necesario
+        horas = horas < 10 ? '0' + horas : horas;
+        minutos = minutos < 10 ? '0' + minutos : minutos;
+        segundos = segundos < 10 ? '0' + segundos : segundos;
+
+        var horaActual = horas + ':' + minutos + ':' + segundos;
+
+        document.getElementById('clock').innerHTML = horaActual;
+    }
+
+    // Actualizar cada segundo
+    setInterval(mostrarHora, 1000);
+
+    // Mostrar la hora inicial
+    mostrarHora();
+    </script>
 
 
-</script>
 </body>
 
 </html>

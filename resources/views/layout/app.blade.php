@@ -1,7 +1,4 @@
-@extends('layout.menu')
-
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <!-- Etiquetas meta requeridas -->
@@ -15,132 +12,93 @@
     <!--Iconos  css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
 
-    <title> {{ config('constantes.appName') }} | @yield('tituloPagina') </title>
+
+    <title>Mi Web</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            /* Color de fondo */
+        }
+
+        .container {
+            width: 80%;
+            /* Ancho del contenedor */
+            max-width: 800px;
+            /* Ancho máximo */
+            margin: 60px auto;
+            /* Centrar el contenedor */
+            background-color: #fff;
+            /* Color de fondo del contenedor */
+            padding: 20px;
+            /* Espaciado interno */
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            /* Sombra */
+            overflow-y: auto;
+            /* Scroll vertical cuando es necesario */
+            max-height: 80vh;
+            /* Altura máxima del contenedor */
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                /* Cambiar el ancho para dispositivos más pequeños */
+                padding: 15px;
+                /* Espaciado interno para dispositivos más pequeños */
+            }
+        }
+
+        /* Estilo opcional para la imagen en la barra de navegación */
+        .navbar-brand img {
+            margin-right: 5px;
+            /* Espacio entre la imagen y el texto del branding */
+            border-radius: 50%;
+            /* Borde redondeado para la imagen */
+            transition: transform 0.3s ease;
+            /* Efecto de transición al pasar el ratón */
+        }
+
+        .navbar-brand img:hover {
+            transform: scale(1.2);
+            /* Aumentar ligeramente el tamaño al pasar el ratón */
+        }
+    </style>
+
 
 </head>
-@yield('styles')
-
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-
-    .container {
-        width: 80%;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    .container-fluid {
-        padding: 20px;
-    }
-
-    #titulo-pagina {
-        background-color: #f8f9fa;
-        padding: 10px;
-        margin-bottom: 20px;
-    }
-
-    #titulo-pagina h1 {
-        font-size: 24px;
-        margin: 0;
-        padding: 0;
-    }
-
-    #titulo-pagina small {
-        font-size: 16px;
-    }
-
-    .alert {
-        margin-bottom: 10px;
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    .alert-danger {
-        background-color: #f8d7da;
-        border: 1px solid #f5c6cb;
-        color: #721c24;
-    }
-
-    .alert-success {
-        background-color: #d4edda;
-        border: 1px solid #c3e6cb;
-        color: #155724;
-    }
-
-    .close {
-        cursor: pointer;
-    }
-
-    .bodycontent {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        padding: 20px;
-        border-radius: 5px;
-    }
-
-    .paddig-custom {
-        padding-left: 75px;
-        padding-right: 75px;
-    }
-
-    .text-bold {
-        font-weight: bold;
-    }
-
-    .text-justify {
-        text-align: justify;
-    }
-
-    #titulo-pagina {
-        background-color: #f8f9fa;
-        padding: 10px;
-        margin-bottom: 20px;
-        margin-top: 90px; /* Add this line to adjust the margin at the top */
-    }
-
-</style>
-@yield('styles')
 
 <body>
 
-    <main>
-        <div class="container @if (isset($fluid) && $fluid) container-fluid paddig-custom @endif">
-            <div class="row" id="titulo-pagina">
-                <h1>@yield('titulo') | <small>@yield('subtitulo')</small></h1>
-            </div>
-            <div class="row">
-                <div class="alert alert-danger alert-dismissible" role="alert" id="alerta" hidden>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="alert alert-success" id="aviso" hidden>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-            </div>
-        </div>
-        <div class="container @if (isset($fluid) && $fluid) container-fluid paddig-custom @endif bodycontent">
-            @yield('contenedor_pantalla')
-        </div>
-    </main>
+    @section('pantalla')
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                <img src="ruta/a/tu/imagen.jpg" alt="Logo" width="30" height="30"
+                    class="d-inline-block align-top" loading="lazy">
+                SIT
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" >Sistema de Turnos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Manual</a>
+                    </li>
+                </ul>
+        </nav>
+    @show
 
-    <footer>
-        <div class="container @if (isset($fluid) && $fluid) container-fluid @endif">
-            <div class="pull-left">
-                <strong><a> Sistema en proceso </a></strong><br>
-            </div>
-            <div class="pull-right">
-                <img src="{{ config('constantes.appLogoFooter') }}" height="70">
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </footer>
-
+    <div class="container">
+        @yield('content')
+    </div>
     <!-- Iconos Scripts-->
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
