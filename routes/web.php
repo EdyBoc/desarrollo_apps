@@ -5,6 +5,7 @@ Route::get('/', function () {
 });
 
 Route::get('index_asistencia', 'SistemaTurnos\AsistenciaController@index')->name('index_asistencia');
+Route::post('marcage/guardar_ingreso', 'SistemaTurnos\AsistenciaController@marcaje_ingreso')->name('guardar_ingreso');
 //asingnaciones
 Route::get('asignaciones', 'SistemaTurnos\AsignacionPersonaController@asignar_persona')->name('asignaciones');
 Route::get('solicitud_asignaciones', 'SistemaTurnos\AsignacionPersonaController@solicitud_persona')->name('solicitud_asignaciones');

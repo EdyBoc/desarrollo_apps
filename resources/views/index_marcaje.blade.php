@@ -32,23 +32,19 @@
                                 <a href="{{ route('index_asistencia') }}">Ingresar a Login</a>
                             </div>
                             <h4 class="card-title">Bienvenido al Sistema</h4>
-                            <div id="clock" class="text-center display-1"></div>
+                            <div id="clock" class="text-center"></div>
                         </div>
                         <div class="card-body">
-                            <form action=" " method="post">
                                 <div class="form-group">
                                     <label for="lb_codigo">CODIGO</label>
                                     <input type="number" class="form-control" id="codigo" name="codigo"
                                         placeholder="Ingrese su codigo AQUI">
                                 </div>
 
-                                <div class="text-center mt-4">
-                                    <button type="submit" class="btn btn-primary">ENTRADA</button>
+                                <div class="text-center ">
+                                    <button type="submit" class="btn btn-success" id="btn_agregar_ingreso"  name="btn_agregar_ingreso">Entrada<ion-icon name="alarm-outline"></ion-icon></button>
                                     <button type="submit" class="btn btn-danger"></i>SALIDA</button>
-
-
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -58,10 +54,10 @@
 
 
     <footer class="d-flex justify-content-center align-items-center">
-        <p>edy@example.com</p>
+        <p>Sistema de Turnos</p>
     </footer>
 
-    <!-- Iconos Scripts-->
+    <!-- Iconos Scripts   https://ionic.io/ionicons-->
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
     <!-- bootstrap@4 Scripts-->
@@ -74,22 +70,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
 <script>
-    function mostrarHora() {
+      function mostrarHora() {
         var fecha = new Date();
         var horas = fecha.getHours();
         var minutos = fecha.getMinutes();
         var segundos = fecha.getSeconds();
+        var dia = fecha.getDate();
+        var mes = fecha.getMonth() + 1; // Los meses en JavaScript comienzan desde 0
+        var año = fecha.getFullYear();
 
         // Formatear a dos dígitos si es necesario
         horas = horas < 10 ? '0' + horas : horas;
         minutos = minutos < 10 ? '0' + minutos : minutos;
         segundos = segundos < 10 ? '0' + segundos : segundos;
+        dia = dia < 10 ? '0' + dia : dia;
+        mes = mes < 10 ? '0' + mes : mes;
 
         var horaActual = horas + ':' + minutos + ':' + segundos;
+        var fechaActual = dia + '/' + mes + '/' + año;
 
-        document.getElementById('clock').innerHTML = horaActual;
+        var horaYFechaActual = horaActual + ' ' + fechaActual;
+
+        document.getElementById('clock').innerHTML = horaYFechaActual;
     }
 
     // Actualizar cada segundo
@@ -97,7 +102,44 @@
 
     // Mostrar la hora inicial
     mostrarHora();
-    </script>
+
+
+    $("#btn_agregar_ingreso").click(function() {
+    var URL = "{{ route('guardar_ingreso') }}";
+    var token = '{{ csrf_token() }}';
+    var data = {
+        codigo: $('#codigo').val()
+    };
+
+    $.ajax({
+        url: URL,
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': token
+        },
+        data: data,
+        success: function(response) {
+            $.unblockUI();
+            if (response.status != 200) {
+                toastr.error(response.mensaje);
+                return false;
+            } else {
+                toastr.success(response.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            // Manejo de errores
+            toastr.error('Se produjo un error al realizar la solicitud.');
+            console.error(xhr.responseText);
+        }
+    });
+});
+
+
+
+        
+
+</script>
 
 
 </body>

@@ -20,4 +20,14 @@ class AsistenciaController extends Controller
 
         }
 
+
+        
+        public function marcaje_ingreso()
+        {
+           
+
+        }
+
+
+
 }
