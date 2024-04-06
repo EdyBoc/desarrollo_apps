@@ -94,10 +94,24 @@
         </div>
     </div>
 
+    <div class="col-lg-push-6 col-md-push-4 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+            <div class="pull-right" style="display: flex">
+                <a class="btn btn-danger " id="btn_limpiar"> <i class="fas fa-eraser"></i>&nbsp;Limpiar</a>&nbsp;&nbsp;
+                <a class="btn btn-warning" id="btn_buscar"><i class="fas fa-search"></i>&nbsp; Buscar</a>&nbsp;&nbsp;
+                <a class="btn btn-danger" id="btn_pdf"><i class="fas fa-file-pdf"></i>&nbsp; PDF</a>&nbsp;&nbsp;
+            </div>
+        </div>
 
 @endsection
 
 @section('scripts')
     @parent
     <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script>
+      $('#btn_limpiar').click(function(event) {
+    console.log("¡Haz hecho clic en el botón!");
+    event.preventDefault();
+    location.reload();
+});
+    </script>
 @endsection
